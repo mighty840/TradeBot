@@ -68,6 +68,17 @@ public class LocalAccount {
         return realAccount;
     }
 
+    public double getOpenPrice(String currencypair){
+        System.out.println(currencypair);
+        List<com.binance.api.client.domain.account.Trade> openTrades= CurrentAPI.get().getMyTrades(currencypair);
+        if(openTrades.isEmpty()){
+            return 0;
+        }else{
+            System.out.println(Double.parseDouble(openTrades.get(0).getPrice()));
+            return Double.parseDouble(openTrades.get(0).getPrice());
+        }
+        
+    }
     //All backend.Trade methods
     public List<Trade> getActiveTrades() {
         return activeTrades;
